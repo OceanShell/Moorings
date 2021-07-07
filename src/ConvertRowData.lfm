@@ -1,0 +1,315 @@
+object frmConvertRowData: TfrmConvertRowData
+  Left = 571
+  Top = 182
+  Caption = 'frmRowDataConversion (from engineering to physical units)'
+  ClientHeight = 793
+  ClientWidth = 987
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  PixelsPerInch = 120
+  object DBGridEh1: TDBGridEh
+    Left = 0
+    Top = 0
+    Width = 987
+    Height = 231
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    Align = alTop
+    DataSource = frmdm.dsSM
+    DynProps = <>
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    FooterParams.Color = clWindow
+    GridLineParams.VertEmptySpaceStyle = dessNonEh
+    IndicatorOptions = [gioShowRowIndicatorEh]
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
+    OptionsEh = [dghHighlightFocus, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghColumnResize, dghColumnMove]
+    ParentFont = False
+    RowSizingAllowed = True
+    SortLocal = True
+    STFilter.InstantApply = True
+    STFilter.Local = True
+    TabOrder = 0
+    Columns = <
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'ABSNUM'
+        Footers = <>
+        Width = 65
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_RCMNUM'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Footers = <>
+        Title.Caption = 'RCM#'
+        Width = 66
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_QFLAG'
+        Footers = <>
+        Title.Caption = 'QF'
+        Width = 26
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_TIMEBEG'
+        Footers = <>
+        Title.Caption = 'Start'
+        Width = 157
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_TIMEEND'
+        Footers = <>
+        Title.Caption = 'Stop'
+        Width = 157
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_LAT'
+        Footers = <>
+        Title.Caption = 'LAT'
+        Width = 78
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_LON'
+        Footers = <>
+        Title.Caption = 'LON'
+        Width = 79
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_RCMDEPTH'
+        Footers = <>
+        Title.Caption = 'RDEPTH'
+        Width = 65
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_RCMTIMEINT'
+        Footers = <>
+        Title.Caption = 'TINT'
+        Width = 52
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_BOTTOMDEPTH'
+        Footers = <>
+        Title.Caption = 'BDEPTH'
+        Width = 66
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_SENSORS'
+        Footers = <>
+        Title.Caption = 'SENSORS'
+        Width = 78
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_TEMPCHANNEL'
+        Footers = <>
+        Title.Caption = 'TCH'
+        Width = 39
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+    end
+  end
+  object DBGridEh2: TDBGridEh
+    Left = 0
+    Top = 239
+    Width = 998
+    Height = 231
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    DataSource = frmdm.dsSM
+    DynProps = <>
+    FooterParams.Color = clWindow
+    GridLineParams.VertEmptySpaceStyle = dessNonEh
+    IndicatorOptions = [gioShowRowIndicatorEh]
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
+    OptionsEh = [dghHighlightFocus, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghColumnResize, dghColumnMove]
+    RowSizingAllowed = True
+    SortLocal = True
+    STFilter.InstantApply = True
+    STFilter.Local = True
+    TabOrder = 1
+    Columns = <
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_REC_ROW'
+        Footers = <>
+        Title.Caption = 'RREC'
+        Width = 52
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_REC_CUR'
+        Footers = <>
+        Title.Caption = 'CREC'
+        Width = 53
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_RCMTYPE'
+        Footers = <>
+        Title.Caption = 'RYGG'
+        Width = 65
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_REGION'
+        Footers = <>
+        Title.Caption = 'REGION'
+        Width = 65
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_PLACE'
+        Footers = <>
+        Title.Caption = 'PLACE'
+        Width = 66
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_PI'
+        Footers = <>
+        Title.Caption = 'PI'
+        Width = 78
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_PROJECTNAME'
+        Footers = <>
+        Title.Caption = 'PROJECT'
+        Width = 131
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_ARCHIVENAME'
+        Footers = <>
+        Title.Caption = 'ARCHIVE'
+        Width = 105
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_ARCHIVEREFNUM'
+        Footers = <>
+        Title.Caption = 'AR#'
+        Width = 52
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_SOURCEFILENAME'
+        Footers = <>
+        Title.Caption = 'SOURCE FILE'
+        Width = 131
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'M_CALIBRATIONSHEET'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Footers = <>
+        Title.Caption = 'CALI. SHEET'
+        Width = 130
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+    end
+  end
+  object btnConvertAll: TBitBtn
+    Left = 824
+    Top = 478
+    Width = 133
+    Height = 33
+    Caption = 'Convert selected'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnConvertAllClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 536
+    Width = 987
+    Height = 257
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 3
+    Visible = False
+  end
+  object btnEmptyTableCurrents: TBitBtn
+    Left = 215
+    Top = 490
+    Width = 161
+    Height = 25
+    Caption = 'Empty Table Currents'
+    TabOrder = 4
+    OnClick = btnEmptyTableCurrentsClick
+  end
+  object CheckBox1: TCheckBox
+    Left = 48
+    Top = 496
+    Width = 161
+    Height = 17
+    Caption = 'Show output details?'
+    TabOrder = 5
+  end
+end

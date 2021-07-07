@@ -1,0 +1,71 @@
+object frmUploadConvertedDataINN: TfrmUploadConvertedDataINN
+  Left = 407
+  Top = 589
+  Caption = 'frmUploadConvertedDataINN'
+  ClientHeight = 402
+  ClientWidth = 744
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object Label1: TLabel
+    Left = 9
+    Top = 9
+    Width = 446
+    Height = 18
+    Caption = 
+      'Module uploads converted mooring data available only in INN form' +
+      'at'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 9
+    Top = 35
+    Width = 616
+    Height = 18
+    Caption = 
+      '!!! designed for files containing five space separated values: #' +
+      ' temp speed direction date time '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object btnUpload: TBitBtn
+    Left = 9
+    Top = 61
+    Width = 141
+    Height = 33
+    Caption = 'Upload'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    Visible = False
+    OnClick = btnUploadClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 160
+    Width = 744
+    Height = 242
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+end

@@ -1,0 +1,48 @@
+object frmUploadConvertedData_PRN: TfrmUploadConvertedData_PRN
+  Left = 1026
+  Top = 511
+  Caption = 'frmUploadConvertedData_PRN'
+  ClientHeight = 489
+  ClientWidth = 743
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object Memo1: TMemo
+    Left = 0
+    Top = 152
+    Width = 743
+    Height = 337
+    Align = alBottom
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    Lines.Strings = (
+      'Memo1')
+    ParentFont = False
+    TabOrder = 0
+    Visible = False
+  end
+  object btnUpload: TBitBtn
+    Left = 20
+    Top = 58
+    Width = 141
+    Height = 33
+    Caption = 'Upload'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    Visible = False
+    OnClick = btnUploadClick
+  end
+end

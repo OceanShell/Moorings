@@ -1,0 +1,81 @@
+object frmUploadConvertedDataLST: TfrmUploadConvertedDataLST
+  Left = 1129
+  Top = 575
+  Caption = 'frmUploadConvertedDataLST'
+  ClientHeight = 399
+  ClientWidth = 677
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object btnUpload: TBitBtn
+    Left = 20
+    Top = 58
+    Width = 141
+    Height = 33
+    Caption = 'Upload'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    Visible = False
+    OnClick = btnUploadClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 160
+    Width = 677
+    Height = 239
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+  object CheckListBox1: TCheckListBox
+    Left = 185
+    Top = 8
+    Width = 121
+    Height = 124
+    Items.Strings = (
+      'direction'
+      'speed'
+      'temperature'
+      'salinity'
+      'pressure'
+      'turbidity'
+      'oxygen')
+    TabOrder = 2
+  end
+  object Memo2: TMemo
+    Left = 336
+    Top = 8
+    Width = 333
+    Height = 124
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -9
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Lines.Strings = (
+      
+        'Module uploads converted mooring data available only in LST form' +
+        'at'
+      'Abbreviations in LST files:'
+      'F - current force'
+      'A - current direction'
+      'U - current U component'
+      'V - current V component'
+      'T - temperature'
+      'S- salinity'
+      'P - pressure')
+    ParentFont = False
+    TabOrder = 3
+  end
+end

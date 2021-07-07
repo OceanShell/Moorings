@@ -1,0 +1,82 @@
+object frmADCPWOCE: TfrmADCPWOCE
+  Left = 369
+  Top = 382
+  Caption = 'frmADCPWOCE'
+  ClientHeight = 619
+  ClientWidth = 1521
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object btnOpen: TBitBtn
+    Left = 56
+    Top = 32
+    Width = 161
+    Height = 25
+    Caption = 'ADCP input files?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnOpenClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 200
+    Width = 1521
+    Height = 419
+    Align = alBottom
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    Lines.Strings = (
+      'Memo1')
+    ParentFont = False
+    TabOrder = 1
+  end
+  object btnCreateCDS: TBitBtn
+    Left = 56
+    Top = 80
+    Width = 161
+    Height = 25
+    Caption = 'Create CDS'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnCreateCDSClick
+  end
+  object btn_Upload: TBitBtn
+    Left = 56
+    Top = 128
+    Width = 161
+    Height = 25
+    Caption = 'Upload data into DB'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+    OnClick = btn_UploadClick
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = '|*.dir'
+    Left = 352
+    Top = 24
+  end
+end

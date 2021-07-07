@@ -1,0 +1,46 @@
+object frmCreateTextReport: TfrmCreateTextReport
+  Left = 958
+  Top = 527
+  Caption = 'frmCreateTextReport (database statistics)'
+  ClientHeight = 470
+  ClientWidth = 907
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object btnCreateReport: TBitBtn
+    Left = 24
+    Top = 32
+    Width = 131
+    Height = 25
+    Caption = 'Create Report'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnCreateReportClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 112
+    Width = 907
+    Height = 358
+    Align = alBottom
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    Lines.Strings = (
+      'Memo1')
+    ParentFont = False
+    TabOrder = 1
+  end
+end

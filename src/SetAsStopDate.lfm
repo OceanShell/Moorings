@@ -1,0 +1,47 @@
+object frmSetAsStopDate: TfrmSetAsStopDate
+  Left = 924
+  Top = 914
+  BorderStyle = bsDialog
+  Caption = 'frmSetAsStopDate'
+  ClientHeight = 77
+  ClientWidth = 191
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object Label1: TLabel
+    Left = 0
+    Top = 0
+    Width = 191
+    Height = 42
+    Align = alClient
+    Caption = 'Label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object btnSetStopDate: TBitBtn
+    Left = 0
+    Top = 42
+    Width = 191
+    Height = 35
+    Align = alBottom
+    Caption = 'Set'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnSetStopDateClick
+  end
+end

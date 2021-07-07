@@ -1,0 +1,48 @@
+object frmRecomputeRowSpeed: TfrmRecomputeRowSpeed
+  Left = 1012
+  Top = 680
+  Caption = 'frmRecomputeRowSpeed'
+  ClientHeight = 305
+  ClientWidth = 652
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  PixelsPerInch = 120
+  object Label1: TLabel
+    Left = 24
+    Top = 16
+    Width = 586
+    Height = 16
+    Caption = 
+      'File for recalculation have to be clean !!!  only figures not sy' +
+      'mbols otherwise need to change algorithm'
+    Color = clRed
+    ParentColor = False
+  end
+  object btnOpenSourceFile: TBitBtn
+    Left = 40
+    Top = 40
+    Width = 161
+    Height = 25
+    Caption = 'OpenSourceFile'
+    TabOrder = 0
+    OnClick = btnOpenSourceFileClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 128
+    Width = 652
+    Height = 177
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 224
+    Top = 32
+  end
+end

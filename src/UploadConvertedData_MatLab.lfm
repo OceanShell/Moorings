@@ -1,0 +1,40 @@
+object frmUploadConvertedData_MatLab: TfrmUploadConvertedData_MatLab
+  Left = 650
+  Top = 555
+  Caption = 'frmUploadConvertedData_MatLab'
+  ClientHeight = 438
+  ClientWidth = 725
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object btnUpload: TBitBtn
+    Left = 36
+    Top = 24
+    Width = 145
+    Height = 33
+    Caption = 'Upload'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnUploadClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 96
+    Width = 725
+    Height = 342
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+end

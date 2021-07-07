@@ -1,0 +1,128 @@
+object frmTextFilesList1: TfrmTextFilesList1
+  Left = 317
+  Top = 215
+  Caption = 'TextFilesList'
+  ClientHeight = 455
+  ClientWidth = 993
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  object Memo1: TMemo
+    Left = 0
+    Top = 148
+    Width = 993
+    Height = 307
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 8
+    Top = 14
+    Width = 385
+    Height = 87
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 11
+      Top = 18
+      Width = 116
+      Height = 13
+      Caption = 'Directoty for search:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 11
+      Top = 54
+      Width = 141
+      Height = 13
+      Caption = 'Extentions for retrieving:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 209
+      Top = 54
+      Width = 16
+      Height = 13
+      Caption = 'OR'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object btnStart: TBitBtn
+      Left = 292
+      Top = 54
+      Width = 75
+      Height = 25
+      Caption = 'Start'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnStartClick
+    end
+    object Edit1: TEdit
+      Left = 170
+      Top = 15
+      Width = 189
+      Height = 21
+      TabOrder = 1
+      Text = 'c:\data\Currents\GFI\'
+    end
+    object Edit2: TEdit
+      Left = 170
+      Top = 51
+      Width = 33
+      Height = 21
+      TabOrder = 2
+      Text = '.HDR'
+    end
+    object Edit3: TEdit
+      Left = 231
+      Top = 51
+      Width = 37
+      Height = 21
+      TabOrder = 3
+      Text = '.hdr'
+    end
+  end
+  object btnCheckDup: TBitBtn
+    Left = 440
+    Top = 14
+    Width = 189
+    Height = 25
+    Caption = 'Check Files Duplicate'
+    TabOrder = 2
+    OnClick = btnCheckDupClick
+  end
+  object ListBox1: TListBox
+    Left = 744
+    Top = 24
+    Width = 121
+    Height = 97
+    ItemHeight = 13
+    TabOrder = 3
+  end
+end

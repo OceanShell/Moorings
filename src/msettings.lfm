@@ -1,0 +1,108 @@
+object frmsettings: Tfrmsettings
+  Left = 537
+  Height = 478
+  Top = 269
+  Width = 934
+  BorderStyle = bsDialog
+  Caption = 'Settings'
+  ClientHeight = 0
+  ClientWidth = 0
+  Color = clBtnFace
+  DesignTimePPI = 144
+  OnShow = FormShow
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.6.0'
+  object btnOk: TButton
+    Left = 760
+    Height = 42
+    Top = 408
+    Width = 147
+    Caption = 'Ok'
+    OnClick = btnOkClick
+    TabOrder = 0
+  end
+  object gbAuxiliaryPrograms: TGroupBox
+    Left = 24
+    Height = 111
+    Top = 24
+    Width = 882
+    Caption = 'Surfer''s scripter'
+    ClientHeight = 81
+    ClientWidth = 878
+    TabOrder = 1
+    object eSurferPath: TEdit
+      Left = 28
+      Height = 33
+      Top = 18
+      Width = 771
+      TabOrder = 0
+    end
+    object btnSurferPath: TButton
+      Left = 813
+      Height = 33
+      Top = 18
+      Width = 33
+      Caption = '...'
+      OnClick = btnSurferPathClick
+      TabOrder = 1
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 24
+    Height = 112
+    Top = 152
+    Width = 882
+    Caption = 'Path to Grapher''s scripter'
+    ClientHeight = 82
+    ClientWidth = 878
+    TabOrder = 2
+    object eGrapherPath: TEdit
+      Left = 28
+      Height = 33
+      Top = 26
+      Width = 771
+      TabOrder = 0
+    end
+    object btnGrapherPath: TButton
+      Left = 813
+      Height = 33
+      Top = 26
+      Width = 33
+      Caption = '...'
+      OnClick = btnGrapherPathClick
+      TabOrder = 1
+      TabStop = False
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 24
+    Height = 112
+    Top = 280
+    Width = 882
+    Caption = 'Path to GEBCO 2020'
+    ClientHeight = 82
+    ClientWidth = 878
+    TabOrder = 3
+    object eGEBCOPath: TEdit
+      Left = 28
+      Height = 33
+      Top = 26
+      Width = 771
+      TabOrder = 0
+    end
+    object btnGEBCOPath: TButton
+      Left = 813
+      Height = 33
+      Top = 26
+      Width = 33
+      Caption = '...'
+      OnClick = btnGrapherPathClick
+      TabOrder = 1
+      TabStop = False
+    end
+  end
+  object OD: TOpenDialog
+    left = 369
+    top = 125
+  end
+end

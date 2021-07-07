@@ -1,0 +1,134 @@
+object frmdm: Tfrmdm
+  OldCreateOrder = False
+  left = 1185
+  top = 548
+  Height = 562
+  HorizontalOffset = 721
+  VerticalOffset = 253
+  Width = 656
+  PPI = 144
+  object DB: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = True
+    Params.Strings = (
+      'user_name=sysdba'
+      'password=masterkey'
+    )
+    Password = 'masterkey'
+    Transaction = TR
+    UserName = 'SYSDBA'
+    CheckTransactionParams = False
+    left = 24
+    top = 24
+  end
+  object TR: TSQLTransaction
+    Active = False
+    Database = DB
+    left = 80
+    top = 24
+  end
+  object Q0: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 288
+    top = 112
+  end
+  object QQ: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 368
+    top = 112
+  end
+  object ib1q1: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 66
+    top = 108
+  end
+  object ib1q2: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 138
+    top = 108
+  end
+  object ib1q3: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 210
+    top = 108
+  end
+  object dsCF: TDataSource
+    DataSet = CFQuery
+    left = 128
+    top = 226
+  end
+  object Q: TSQLQuery
+    MaxIndexesCount = 999
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 138
+    top = 24
+  end
+  object DS: TDataSource
+    DataSet = Q
+    left = 200
+    top = 24
+  end
+  object DSRD: TDataSource
+    DataSet = RDQuery
+    left = 128
+    top = 320
+  end
+  object RDQuery: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 56
+    top = 320
+  end
+  object CFQuery: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 56
+    top = 226
+  end
+  object CDSRD: TBufDataset
+    FieldDefs = <>
+    left = 208
+    top = 320
+  end
+  object CDScf: TBufDataset
+    FieldDefs = <>
+    left = 208
+    top = 226
+  end
+  object CDQuery: TSQLQuery
+    FieldDefs = <>
+    Database = DB
+    Transaction = TR
+    Params = <>
+    left = 56
+    top = 416
+  end
+  object dsCD: TDataSource
+    DataSet = CDQuery
+    left = 128
+    top = 416
+  end
+end

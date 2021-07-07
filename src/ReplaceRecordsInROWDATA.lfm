@@ -1,0 +1,186 @@
+object frmReplaceRecordsInROWDATA: TfrmReplaceRecordsInROWDATA
+  Left = 748
+  Top = 523
+  Caption = 'frmReplaceRecordsInROWDATA'
+  ClientHeight = 475
+  ClientWidth = 768
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -14
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object Label2: TLabel
+    Left = 13
+    Top = 5
+    Width = 532
+    Height = 18
+    Caption = 
+      'Module replaces row data for current instrument using data from ' +
+      'RCM source file '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object btnSourceFile: TBitBtn
+    Left = 31
+    Top = 47
+    Width = 143
+    Height = 33
+    Caption = 'Source file?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnSourceFileClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 262
+    Width = 768
+    Height = 213
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+    Visible = False
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 234
+    Top = 47
+    Width = 144
+    Height = 116
+    Caption = 'RCM Type'
+    ItemIndex = 0
+    Items.Strings = (
+      'RCM8 or earlier'
+      'RCM9')
+    TabOrder = 2
+    Visible = False
+  end
+  object GroupBox1: TGroupBox
+    Left = 407
+    Top = 30
+    Width = 321
+    Height = 217
+    Caption = 'Source file composition (have to be edited)'
+    TabOrder = 3
+    Visible = False
+    object Label1: TLabel
+      Left = 14
+      Top = 10
+      Width = 33
+      Height = 17
+      Caption = 'Col# '
+    end
+    object Label3: TLabel
+      Left = 76
+      Top = 7
+      Width = 69
+      Height = 17
+      Caption = 'Parameters'
+    end
+    object Edit1: TEdit
+      Left = 14
+      Top = 32
+      Width = 27
+      Height = 26
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      Text = '6'
+    end
+    object Edit2: TEdit
+      Left = 63
+      Top = 32
+      Width = 101
+      Height = 26
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      Text = 'RTCPDS'
+    end
+    object Edit3: TEdit
+      Left = 14
+      Top = 78
+      Width = 27
+      Height = 26
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      Text = '9'
+    end
+    object Edit4: TEdit
+      Left = 63
+      Top = 78
+      Width = 101
+      Height = 26
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 3
+      Text = 'RSDTCPUOX'
+    end
+    object Memo2: TMemo
+      Left = 185
+      Top = 25
+      Width = 123
+      Height = 164
+      Lines.Strings = (
+        'R - Reference'
+        'T - Temperature'
+        'C - Conductivity'
+        'P - Pressure'
+        'D - Direction'
+        'S - Speed'
+        'U - tUrbidity'
+        'O - Oxygen'
+        'X - Reserved')
+      TabOrder = 4
+    end
+    object btnReplace: TBitBtn
+      Left = 74
+      Top = 140
+      Width = 98
+      Height = 33
+      Caption = 'REPLACE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      OnClick = btnReplaceClick
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 464
+    Top = 244
+  end
+end

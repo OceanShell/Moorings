@@ -1,0 +1,47 @@
+object frmUploadConvertedDataDCM12: TfrmUploadConvertedDataDCM12
+  Left = 738
+  Top = 581
+  Caption = 'frmUploadConvertedDataDCM12'
+  ClientHeight = 415
+  ClientWidth = 755
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object Memo1: TMemo
+    Left = 0
+    Top = 96
+    Width = 755
+    Height = 319
+    Align = alBottom
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    Lines.Strings = (
+      'Memo1')
+    ParentFont = False
+    TabOrder = 0
+  end
+  object btnUpload: TBitBtn
+    Left = 20
+    Top = 26
+    Width = 141
+    Height = 33
+    Caption = 'Upload'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    Visible = False
+    OnClick = btnUploadClick
+  end
+end

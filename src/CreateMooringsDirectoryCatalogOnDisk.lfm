@@ -1,0 +1,93 @@
+object frmCreateMooringsDirectoryCatalogOnDisk: TfrmCreateMooringsDirectoryCatalogOnDisk
+  Left = 445
+  Height = 540
+  Top = 241
+  Width = 954
+  Caption = 'frmCreateMooringsDirectoryCatalogOnDisk'
+  ClientHeight = 540
+  ClientWidth = 954
+  Color = clBtnFace
+  DesignTimePPI = 144
+  Font.Color = clWindowText
+  Font.Height = -20
+  Font.Name = 'Tahoma'
+  OnShow = FormShow
+  LCLVersion = '2.0.6.0'
+  object btnCreate: TBitBtn
+    Left = 580
+    Height = 38
+    Top = 170
+    Width = 362
+    Caption = 'Create moorings catalog on disk'
+    Font.Color = clRed
+    Font.Height = -20
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    OnClick = btnCreateClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 324
+    Top = 216
+    Width = 954
+    Align = alBottom
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Tahoma'
+    Lines.Strings = (
+      'Memo1'
+    )
+    ParentFont = False
+    TabOrder = 1
+  end
+  object GroupBox1: TGroupBox
+    Left = 12
+    Height = 170
+    Top = 24
+    Width = 494
+    Caption = 'Files transfer into catalog'
+    ClientHeight = 141
+    ClientWidth = 490
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Tahoma'
+    ParentFont = False
+    TabOrder = 2
+    object btn_nc: TBitBtn
+      Left = 21
+      Height = 38
+      Top = 15
+      Width = 446
+      Caption = 'Copy NetCDF, pdf, txt files into catalog on disk'
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Tahoma'
+      OnClick = btn_ncClick
+      ParentFont = False
+      TabOrder = 0
+    end
+    object btnAddDrawings: TBitBtn
+      Left = 21
+      Height = 38
+      Top = 75
+      Width = 446
+      Caption = 'Add moorings drawings into created catalog'
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Tahoma'
+      OnClick = btnAddDrawingsClick
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object ListBox1: TListBox
+    Left = 580
+    Height = 120
+    Top = 32
+    Width = 362
+    ItemHeight = 0
+    TabOrder = 3
+  end
+end

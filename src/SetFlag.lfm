@@ -1,0 +1,54 @@
+object frmSetFlag: TfrmSetFlag
+  Left = 899
+  Top = 727
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'frmSetFlag'
+  ClientHeight = 190
+  ClientWidth = 140
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object ListBox1: TListBox
+    Left = 0
+    Top = 0
+    Width = 140
+    Height = 165
+    Align = alClient
+    Items.Strings = (
+      '[0]  not set'
+      '[1]'
+      '[2]'
+      '[3]'
+      '[4]'
+      '[5] suspicious'
+      '[6]'
+      '[7]'
+      '[8]'
+      '[9] erroneous')
+    TabOrder = 0
+    OnClick = ListBox1Click
+  end
+  object btnSetQFL: TBitBtn
+    Left = 0
+    Top = 165
+    Width = 140
+    Height = 25
+    Align = alBottom
+    Caption = 'Set Quality FLag'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btnSetQFLClick
+  end
+end

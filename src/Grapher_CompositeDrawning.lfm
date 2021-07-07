@@ -1,0 +1,83 @@
+object frmGrapher_CompositeDrawning: TfrmGrapher_CompositeDrawning
+  Left = 296
+  Height = 726
+  Top = 131
+  Width = 1308
+  Caption = 'frmGrapher_CompositeDrawning'
+  ClientHeight = 0
+  ClientWidth = 0
+  Color = clBtnFace
+  DesignTimePPI = 144
+  Font.Color = clWindowText
+  Font.Height = -20
+  Font.Name = 'Tahoma'
+  OnShow = FormShow
+  LCLVersion = '2.0.6.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 318
+    Top = 408
+    Width = 1308
+    Align = alBottom
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Courier New'
+    Lines.Strings = (
+      'Memo1'
+    )
+    ParentFont = False
+    TabOrder = 0
+  end
+  object GroupBox1: TGroupBox
+    Left = 48
+    Height = 314
+    Top = 36
+    Width = 314
+    Caption = 'Selection'
+    ClientHeight = 285
+    ClientWidth = 310
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Tahoma'
+    ParentFont = False
+    TabOrder = 1
+    object CheckListBox1: TCheckListBox
+      Left = 21
+      Height = 210
+      Top = 10
+      Width = 266
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Tahoma'
+      ItemHeight = 0
+      ParentFont = False
+      TabOrder = 0
+    end
+    object btn_CreateGrapherPlot: TBitBtn
+      Left = 21
+      Height = 38
+      Top = 230
+      Width = 266
+      Caption = 'Create Grapher Plot'
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Tahoma'
+      OnClick = btn_CreateGrapherPlotClick
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+  object btn_AllSelectedInstruments: TBitBtn
+    Left = 756
+    Height = 38
+    Top = 84
+    Width = 326
+    Caption = 'Plot All Selected Instruments'
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Tahoma'
+    OnClick = btn_AllSelectedInstrumentsClick
+    ParentFont = False
+    TabOrder = 2
+  end
+end

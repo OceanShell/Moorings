@@ -1,0 +1,309 @@
+object frmPlotConvertedData: TfrmPlotConvertedData
+  Left = 229
+  Height = 925
+  Top = 51
+  Width = 1438
+  Caption = 'Plot Converted Data'
+  ClientHeight = 0
+  ClientWidth = 0
+  Color = clBtnFace
+  DesignTimePPI = 144
+  Font.Color = clWindowText
+  OnShow = FormShow
+  LCLVersion = '2.0.6.0'
+  object RadioGroup1: TRadioGroup
+    Left = 1248
+    Height = 464
+    Top = 72
+    Width = 164
+    Anchors = [akTop, akRight]
+    AutoFill = True
+    Caption = 'Plot'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 434
+    ClientWidth = 160
+    ItemIndex = 0
+    Items.Strings = (
+      'C_ANGLE'
+      'C_SPEED'
+      'C_TEMP'
+      'C_SALT'
+      'C_PRESS'
+      'C_TURB'
+      'C_OXYG'
+      'C_CFL'
+      'C_TFL'
+      'C_SFL'
+      'C_PFL'
+      'C_UFL'
+      'C_OFL'
+    )
+    OnClick = RadioGroup1Click
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 553
+    Top = 0
+    Width = 1220
+    Align = alLeft
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BevelOuter = bvNone
+    Caption = 'Panel1'
+    ClientHeight = 553
+    ClientWidth = 1220
+    TabOrder = 1
+    object Chart1: TChart
+      Left = 0
+      Height = 429
+      Top = 75
+      Width = 1220
+      AxisList = <      
+        item
+          Marks.LabelBrush.Style = bsClear
+          Minors = <>
+          Title.LabelFont.Orientation = 900
+          Title.LabelBrush.Style = bsClear
+        end      
+        item
+          Alignment = calBottom
+          Marks.LabelBrush.Style = bsClear
+          Minors = <>
+          Title.LabelBrush.Style = bsClear
+        end>
+      BackColor = clWhite
+      Foot.Brush.Color = clBtnFace
+      Foot.Font.Color = clBlue
+      Title.Brush.Color = clBtnFace
+      Title.Font.Color = clBlue
+      Title.Text.Strings = (
+        'TAChart'
+      )
+      Align = alClient
+      OnMouseMove = Chart1MouseMove
+      object Series1: TLineSeries
+        LinePen.Color = clBlue
+      end
+    end
+    object Panel2: TPanel
+      Left = 0
+      Height = 49
+      Top = 504
+      Width = 1220
+      Align = alBottom
+      BevelOuter = bvNone
+      ClientHeight = 49
+      ClientWidth = 1220
+      TabOrder = 1
+      object Label2: TLabel
+        Left = 24
+        Height = 25
+        Top = 12
+        Width = 447
+        Caption = 'right-click over a column to set QFL=9 on whole variable'
+        ParentColor = False
+      end
+      object chkActivateQFL: TCheckBox
+        Left = 536
+        Height = 29
+        Top = 8
+        Width = 158
+        Caption = 'Filter out QFL=9'
+        OnChange = chkActivateQFLChange
+        OnMouseUp = chkActivateQFLMouseUp
+        TabOrder = 0
+      end
+      object btnCDSCommit: TBitBtn
+        Left = 1096
+        Height = 32
+        Top = 5
+        Width = 123
+        Caption = 'Save'
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF000000FF0000000000FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF000000FF000000FF000000FF0000000000FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF000000FF000000FF000000FF0000000000FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF000000FF000000FF000000FF000000FF000000FF0000000000FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF000000FF000000FF000000FF000000FF000000FF000000FF0000000000FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF007F7F
+          7F000000FF000000FF0000000000FF00FF000000FF000000FF000000FF000000
+          0000FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF007F7F7F000000
+          FF0000000000FF00FF00FF00FF00FF00FF00FF00FF000000FF000000FF000000
+          0000FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF000000FF000000FF000000
+          FF0000000000FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF000000FF000000
+          FF0000000000FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF000000
+          FF000000FF0000000000FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF007F7F7F000000FF0000000000FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF007F7F7F000000FF0000000000FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF000000FF000000FF0000000000FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+          FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+        }
+        OnClick = btnCDSCommitClick
+        TabOrder = 1
+      end
+    end
+    object Panel3: TPanel
+      Left = 0
+      Height = 75
+      Top = 0
+      Width = 1220
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 75
+      ClientWidth = 1220
+      TabOrder = 2
+      object Label5: TLabel
+        Left = 40
+        Height = 25
+        Top = 32
+        Width = 51
+        Caption = 'Label5'
+        ParentColor = False
+      end
+      object Label4: TLabel
+        Left = 512
+        Height = 25
+        Top = 32
+        Width = 51
+        Caption = 'Label4'
+        ParentColor = False
+      end
+      object Label1: TLabel
+        Left = 912
+        Height = 25
+        Top = 32
+        Width = 51
+        Caption = 'Label1'
+        ParentColor = False
+      end
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 372
+    Top = 553
+    Width = 1438
+    Align = alBottom
+    AlternateColor = 13631478
+    AutoAdvance = aaNone
+    AutoFillColumns = True
+    Color = 13627366
+    Columns = <    
+      item
+        Title.Caption = 'ID'
+        Width = 95
+        FieldName = 'ABSNUM'
+      end    
+      item
+        Title.Caption = 'Time'
+        Width = 95
+        FieldName = 'C_TIME'
+        DisplayFormat = 'DD.MM.YYYY hh:nn:ss'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_ANGLE'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_SPEED'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_TEMP'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_SALT'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_PRESS'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_TURB'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_OXYG'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_CFL'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_TFL'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_SFL'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_PFL'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 95
+        FieldName = 'C_UFL'
+      end    
+      item
+        Title.Caption = 'Title'
+        Width = 107
+        FieldName = 'C_OFL'
+      end>
+    DataSource = frmdm.dsCD
+    FixedCols = 0
+    Flat = True
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'MS Sans Serif'
+    Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgRowHighlight]
+    ParentFont = False
+    Scrollbars = ssAutoBoth
+    TabOrder = 2
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -17
+    TitleFont.Name = 'MS Sans Serif'
+  end
+  object ChartToolset1: TChartToolset
+    left = 700
+    top = 222
+  end
+end

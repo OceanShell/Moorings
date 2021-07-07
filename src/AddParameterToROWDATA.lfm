@@ -1,0 +1,87 @@
+object frmAddParameterToROWDATA: TfrmAddParameterToROWDATA
+  Left = 778
+  Top = 392
+  Caption = 'frmAddParameterToROWDATA'
+  ClientHeight = 300
+  ClientWidth = 481
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OnShow = FormShow
+  PixelsPerInch = 96
+  object Label1: TLabel
+    Left = 284
+    Top = 20
+    Width = 110
+    Height = 13
+    Caption = 'Column# in source file:'
+  end
+  object btnSourceFile: TBitBtn
+    Left = 8
+    Top = 20
+    Width = 109
+    Height = 25
+    Caption = 'Source file?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnSourceFileClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 112
+    Width = 481
+    Height = 188
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 136
+    Top = 12
+    Width = 137
+    Height = 73
+    Caption = 'Parameter to add'
+    ItemIndex = 0
+    Items.Strings = (
+      'Turbidity'
+      'Oxygen')
+    TabOrder = 2
+  end
+  object Edit1: TEdit
+    Left = 408
+    Top = 17
+    Width = 45
+    Height = 21
+    TabOrder = 3
+    Text = '7'
+  end
+  object BitBtn1: TBitBtn
+    Left = 378
+    Top = 60
+    Width = 75
+    Height = 25
+    Caption = 'ADD'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    OnClick = BitBtn1Click
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 408
+    Top = 216
+  end
+end

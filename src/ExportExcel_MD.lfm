@@ -1,0 +1,34 @@
+object frmExportExcel_MD: TfrmExportExcel_MD
+  Left = 647
+  Top = 390
+  Caption = 'frmExportExcel_MD'
+  ClientHeight = 613
+  ClientWidth = 953
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  PixelsPerInch = 120
+  object btnExtractMDfromDB: TBitBtn
+    Left = 784
+    Top = 32
+    Width = 161
+    Height = 25
+    Caption = 'ExtractMDfromDB'
+    TabOrder = 0
+    OnClick = btnExtractMDfromDBClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 128
+    Width = 953
+    Height = 485
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    ScrollBars = ssVertical
+    TabOrder = 1
+  end
+end

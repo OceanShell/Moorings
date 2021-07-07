@@ -1,0 +1,63 @@
+object frmImport1: TfrmImport1
+  Left = 515
+  Top = 209
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'frmImport1'
+  ClientHeight = 452
+  ClientWidth = 777
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Position = poScreenCenter
+  OnClose = FormClose
+  PixelsPerInch = 96
+  object btnLoad: TButton
+    Left = 8
+    Top = 39
+    Width = 149
+    Height = 25
+    Caption = 'Start Download'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    Visible = False
+    OnClick = btnLoadClick
+  end
+  object btnOpenDownloadFile: TBitBtn
+    Left = 8
+    Top = 8
+    Width = 149
+    Height = 25
+    Caption = 'Download File?'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btnOpenDownloadFileClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 88
+    Width = 777
+    Height = 364
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 2
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 484
+    Top = 20
+  end
+end

@@ -1,0 +1,106 @@
+object frmPlotTimeSeriesLSTGrapher: TfrmPlotTimeSeriesLSTGrapher
+  Left = 836
+  Top = 499
+  Caption = 'frmPlotTimeSeriesLSTGrapher'
+  ClientHeight = 499
+  ClientWidth = 717
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnShow = FormShow
+  PixelsPerInch = 120
+  object Label1: TLabel
+    Left = 68
+    Top = 80
+    Width = 299
+    Height = 16
+    Caption = 'To generate a plot GRAPHER have to be installed !!! '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object btnOpenLSTFile: TBitBtn
+    Left = 20
+    Top = 21
+    Width = 147
+    Height = 33
+    Caption = 'Open LST File'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    OnClick = btnOpenLSTFileClick
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 224
+    Width = 717
+    Height = 275
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 383
+    Top = 8
+    Width = 185
+    Height = 201
+    Caption = 'Select Variable'
+    TabOrder = 2
+    Visible = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 216
+    Top = 21
+    Width = 161
+    Height = 17
+    Caption = 'Save time series in file'
+    Checked = True
+    State = cbChecked
+    TabOrder = 3
+    Visible = False
+  end
+  object CheckBox2: TCheckBox
+    Left = 216
+    Top = 44
+    Width = 97
+    Height = 17
+    Caption = 'Run Grapher'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+    Visible = False
+  end
+  object btnCreateGrapherPlot: TBitBtn
+    Left = 574
+    Top = 184
+    Width = 129
+    Height = 25
+    Caption = 'Create Grapher plot'
+    TabOrder = 5
+    OnClick = btnCreateGrapherPlotClick
+  end
+  object CheckBox3: TCheckBox
+    Left = 216
+    Top = 188
+    Width = 151
+    Height = 17
+    Caption = 'Show output details'
+    TabOrder = 6
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 40
+    Top = 176
+  end
+end
