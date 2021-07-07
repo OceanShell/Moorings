@@ -189,7 +189,7 @@ implementation
 {$R *.lfm}
 
 uses dm, msettings, sortbufds, osmap, import_1, TextFilesList, LoadHDRFiles,
-     SalinityFromConductivity, ShowRowData, ConvertRowData, CreateTextReport,
+     SalinityFromConductivity, ConvertRowData, CreateTextReport,
      PlotTimeSeriesLSTGrapher, ExportNMDC,
      UpdateMooringStartKAL, RecomputeRowSpeed,
      CreateMooringsDirectoryCatalogOnDisk, ExportExcel_MD,
