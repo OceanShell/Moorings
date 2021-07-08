@@ -6,8 +6,9 @@ interface
 
 uses
   LCLIntf, LCLType, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons, DBCtrls, ExtCtrls, DBGrids, TASeries, TAGraph,
-  TATools, DateUtils;
+  Dialogs, StdCtrls, Buttons, DBCtrls, ExtCtrls, DBGrids, ComCtrls, TASeries,
+  TAGraph, TATools, DateUtils, StrUtils, TACustomSeries, TAGeometry,
+  TAChartUtils, TAIntervalSources, Grids, Types;
 
 type
 
@@ -17,30 +18,31 @@ type
     btnCDSCommit: TBitBtn;
     Chart1: TChart;
     ChartToolset1: TChartToolset;
+    ZMWT: TZoomMouseWheelTool;
+    ZDT: TZoomDragTool;
+    DPHT: TDataPointHintTool;
+    DPCT: TDataPointClickTool;
+    DTI: TDateTimeIntervalChartSource;
+    RadioGroup1: TRadioGroup;
     Series1: TLineSeries;
     chkActivateQFL: TCheckBox;
     DBGrid1: TDBGrid;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
-    Panel3: TPanel;
-  //  DBChart1: TDBChart;
-  //  Series1: TLineSeries;
-  //  Series2: TPointSeries;
-    RadioGroup1: TRadioGroup;
     Label3: TLabel;
+    Splitter1: TSplitter;
+    StatusBar1: TStatusBar;
 
     procedure Chart1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
     procedure chkActivateQFLChange(Sender: TObject);
+    procedure DBGrid1PrepareCanvas(sender: TObject; DataCol: Integer;
+      Column: TColumn; AState: TGridDrawState);
+    procedure DPCTPointClick(ATool: TChartTool; APoint: TPoint);
+    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCDSCommitClick(Sender: TObject);
     procedure RadioGroup1Click(Sender: TObject);
-    procedure chkActivateQFLMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure DBGridEh1KeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
   //  procedure DBGridEh1CellClick(Column: TColumnEh);
@@ -79,6 +81,8 @@ var
   mean,mean_corr: real;
   sensors: string[9];
   RStart,RStop: TDateTime;
+  x:TDateTime;
+  y:Real;
 begin
 
   // frmDM.TR1.StartTransaction;
@@ -86,21 +90,20 @@ begin
   SA := frmDM.Q.FieldByName('ABSNUM').AsInteger;
   sensors := frmDM.Q.FieldByName('M_SENSORS').AsString;
   mc := frmDM.Q.FieldByName('M_DIRCORRECTION').AsFloat;
-  label5.Caption:='magnetic correction='+floattostr(mc);
 
-  frmPlotConvertedData.Caption := frmPlotConvertedData.Caption + '  ID=' +
-    inttostr(SA) + '  RCM#=' + inttostr(frmDM.Q.FieldByName('M_RCMNUM')
-      .AsInteger) + '  sensors:' + sensors;
+  //label5.Caption:='magnetic correction='+floattostr(mc);
+
+  Caption:='Converted data: ID=' +inttostr(SA) +
+           '  RCM#=' + inttostr(frmDM.Q.FieldByName('M_RCMNUM').AsInteger) +
+           '  sensors:' + sensors;
 
    //mooring duration row data stop-start
    RStart:=frmDM.Q.FieldByName('M_TimeBeg').AsDateTime;
    RStop :=frmDM.Q.FieldByName('M_TimeEnd').AsDateTime;
-   label5.Caption:='the total duration of mooring [stop - start]='+
-   floattostrF(DaySpan(RStop,RStart),ffFixed, 6, 2)+ ' days';
 
-
-   {DbChart1.Title.Caption:='RCM depth='
-     +inttostr(frmDM.Q.FieldByName('M_RCMDepth').AsInteger)+' m'; }
+   StatusBar1.Panels[0].Text:=
+   'Total duration of mooring [stop - start]: '+
+   floattostrF(DaySpan(RStop,RStart),ffFixed, 6, 2)+' days';
 
   // rename RadioGroup and DbEhLib columns according to variables composition
   // CH2 temp or press
@@ -277,8 +280,6 @@ begin
     sql.Add(' SELECT * FROM CURRENTS  ');
     sql.Add(' WHERE ');
     sql.Add(' ABSNUM=:ID ');
-    if chkActivateQFL.Checked=true then
-      sql.Add(' AND C_CFL<>9');
     sql.Add(' ORDER BY C_TIME ');
     ParamByName('ID').Value := SA;
     Open;
@@ -286,72 +287,99 @@ begin
     First;
   end;
 
- //  showmessage('here3');
-
-  DBGrid1.ReadOnly:=chkActivateQFL.Checked;
-
-
-   //compute mean direction
-     mik:=0;
-     mean:=0;
-
-     series1.Clear;
-     frmdm.CDQuery.DisableControls;
-     frmDM.CDQuery.First;
-{w}while not frmDM.CDQuery.Eof do begin
-     if frmDM.CDQuery.FieldByName('C_CFL').AsInteger <> 9 then begin
-      mik:=mik+1;
-      mean:=mean+frmDM.CDQuery.FieldByName('C_ANGLE').AsFloat;
-     end;
-
-     series1.AddXY(frmDM.CDQuery.FieldValues['C_Time'],
-                   frmDM.CDQuery.Fields.Fields[RadioGroup1.ItemIndex + 2].Value);
-
-     frmDM.CDQuery.Next;
-{w}end;
-     frmDM.CDQuery.First;
-     frmdm.CDQuery.EnableControls;
-
-     if mik<>0 then mean:=mean/mik;
-                    mean_corr:=mean+mc;  //corrected mean
-
-     //showmessage('rec#='+inttostr(mik)+'  mean='+floattostr(mean));
-
-     Label4.Caption:='mean='+floattostrF(mean,ffFixed,10,3)
-                     +' ('+floattostrF(mean_corr,ffFixed,10,3)+')';
-
-
- { for k := 0 to DBGridEh1.Columns.Count - 1 do
-    DBGridEh1.Columns[k].Title.TitleButton := true;   }
-
-
-  //   Series1.CheckDataSource;
- //    Application.ProcessMessages; }
+  GetStatistics(RadioGroup1.ItemIndex);
 end;
 
 
 procedure TfrmPlotConvertedData.chkActivateQFLChange(Sender: TObject);
+Var
+  fldn: Integer;
 begin
-  ChangeID;
+
+  fldn := RadioGroup1.ItemIndex;
+  // showmessage('variable index='+inttostr(fldn));
+
+  // Filter records with QFL=9
+  if chkActivateQFL.Checked = true then begin
+    case fldn of
+      0, 1: frmdm.CDQuery.Filter := 'C_CFL=0';
+      2:    frmdm.CDQuery.Filter := 'C_TFL=0';
+      3:    frmdm.CDQuery.Filter := 'C_SFL=0';
+      4:    frmdm.CDQuery.Filter := 'C_PFL=0';
+      5:    frmdm.CDQuery.Filter := 'C_UFL=0';
+      6:    frmdm.CDQuery.Filter := 'C_OFL=0';
+    end; { case }
+    frmdm.CDQuery.Filtered := true;
+  end else
+    frmdm.CDQuery.Filtered := false;
+
+  DBGrid1.ReadOnly:=NOT chkActivateQFL.Checked;
+
+ GetStatistics(fldn);
+end;
+
+procedure TfrmPlotConvertedData.DBGrid1PrepareCanvas(sender: TObject;
+  DataCol: Integer; Column: TColumn; AState: TGridDrawState);
+begin
+ if (column.FieldName='ABSNUM') then begin
+    TDBGrid(sender).Canvas.Brush.Color := clBtnFace;
+ end;
+
+ if (gdRowHighlight in AState) then begin
+    TDBGrid(Sender).Canvas.Brush.Color := clNavy;
+    TDBGrid(Sender).Canvas.Font.Color  := clYellow;
+    TDBGrid(Sender).Canvas.Font.Style  := [fsBold];
+ end;
+end;
+
+procedure TfrmPlotConvertedData.DPCTPointClick(ATool: TChartTool; APoint: TPoint
+  );
+Var
+ tool: TDataPointClicktool;
+ series: TLineSeries;
+// pointer: TSeriesPointer;
+
+begin
+  tool := ATool as TDataPointClickTool;
+  if tool.Series is TLineSeries then begin
+    series := TLineSeries(tool.Series);
+
+    if (tool.PointIndex<>-1) then
+        frmdm.CDQuery.Locate('C_TIME', series.XValue[tool.PointIndex], []);
+  end;
+end;
+
+procedure TfrmPlotConvertedData.FormResize(Sender: TObject);
+Var
+  k:integer;
+begin
+  for k:=2 to DBGrid1.Columns.Count-1 do begin
+    DBGrid1.Columns[k].Width:=round((DBGrid1.Width-290)/13);
+  end;
 end;
 
 procedure TfrmPlotConvertedData.Chart1MouseMove(Sender: TObject;
   Shift: TShiftState; X, Y: Integer);
+var
+ params: TNearestPointParams;
+ res1: TNearestPointResults;
+ found1: Boolean;
+ x1,y1: String;
 begin
+ params.FDistFunc := @PointDistX;
+ params.FPoint := Point(X, Y);
+ params.FRadius := 8;
+ params.FTargets := [nptPoint];
+
+ found1 := Series1.GetNearestPoint(params, res1);
+ x1 := DateTimeToStr(res1.FValue.X);//Chart1.XImageToGraph(X);
+ y1 := VarToStr(res1.FValue.Y);
+
+ Chart1.Title.Text.Clear;
+ Chart1.Title.Text.Add('Date: '+x1+'; '+
+   Radiogroup1.Items.Strings[RadioGroup1.ItemIndex]+': '+y1);
 
 end;
-
-
-{
-procedure TfrmPlotConvertedData.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  frmDM.cdsCD.Active := false;
-  frmDM.TR1.Active := false;
-end;
-}
-
-
 
 
 procedure TfrmPlotConvertedData.btnCDSCommitClick(Sender: TObject);
@@ -363,8 +391,6 @@ procedure TfrmPlotConvertedData.RadioGroup1Click(Sender: TObject);
 begin
   ChangeID;
 end;
-
-
 
 procedure TfrmPlotConvertedData.GetStatistics(fld:integer);
 var
@@ -389,33 +415,38 @@ begin
      mik:=0;
      mean:=0;
 
-     frmDM.cdsCD.Filtered := false;
-     frmDM.cdsCD.First;
-     frmdm.CDSCD.DisableControls;
-{w}while not frmDM.cdsCD.Eof do begin
+   Series1.Clear;
+   frmdm.CDQuery.DisableControls;
+   frmDM.CDQuery.First;
+   while not frmDM.CDQuery.Eof do begin
 
-     if frmDM.cdsCD.FieldByName(QFLName).AsInteger = 9 then QFL9:=QFL9+1
+     if frmDM.CDQuery.FieldByName(QFLName).AsInteger = 9 then QFL9:=QFL9+1
 
      else begin
       mik:=mik+1;
-      mean:=mean+frmDM.cdsCD.FieldByName(fldName).AsFloat;
+      mean:=mean+frmDM.CDQuery.FieldByName(fldName).AsFloat;
      end;
 
-     frmDM.cdsCD.Next;
-{w}end;
-     frmdm.cdsCD.EnableControls;
+        series1.AddXY(frmDM.CDQuery.FieldValues['C_TIME'],
+                   frmDM.CDQuery.Fields.Fields[RadioGroup1.ItemIndex + 2].Value);
+
+
+     frmDM.CDQuery.Next;
+   end;
+   frmDM.CDQuery.First;
+   frmdm.CDQuery.EnableControls;
 
      if mik<>0 then mean:=mean/mik;
      //showmessage(QFLName+'  mik='+inttostr(mik)+'  mean='+floattostr(mean));
 
-     Label1.Caption := 'Number of ' + copy(QFLName,3,3) + '=9 is ' + inttostr(QFL9);
-     chkActivateQFL.Checked := true;
+    // Label1.Caption := 'Number of ' + copy(QFLName,3,3) + '=9 is ' + inttostr(QFL9);
+   //  chkActivateQFL.Checked := true;
 
-     Label4.Caption:='mean='+floattostrF(mean,ffFixed,10,3);
+     StatusBar1.Panels[1].Text:='mean='+floattostrF(mean,ffFixed,10,3);
 
 {D}  if fld=0 then begin
        mean_corr:=mean+mc;
-       Label4.Caption:='mean='+floattostrF(mean,ffFixed,10,3)
+       StatusBar1.Panels[1].Text:='mean='+floattostrF(mean,ffFixed,10,3)
                        +' ('+floattostrF(mean_corr,ffFixed,10,3)+')';
 {D}  end;
 
@@ -426,50 +457,17 @@ begin
      mean_b:=mean*0.98;             // kg/cm2 -> bar
      mean_m:=mean_b*10.19977334;    // bar -> meter
 
-     Label4.Caption:='mean='
+     StatusBar1.Panels[1].Text:='mean='
      +floattostrF(mean,ffFixed,10,3)  +' kg/cm2'+'   '
      +floattostrF(mean_b,ffFixed,10,3)+' bar'   +'   '
      +floattostrF(mean_m,ffFixed,10,3)+' m';
 {P}end;
 
 {P}if (fld=4) and (sensors[4]='T') then
-   Label4.Caption:='mean='+floattostrF(mean,ffFixed,10,3)  +' deg C';
+    StatusBar1.Panels[1].Text:='mean='+floattostrF(mean,ffFixed,10,3)  +' deg C';
 
 {O}if (fld=6) then
-   Label4.Caption:='mean='+floattostrF(mean,ffFixed,10,3)  +' ml/l';
-
-
-     frmDM.cdsCD.Filter := QFLName+'=0'; //showmessage(frmDM.cdsCD.Filter);
-     frmDM.cdsCD.Filtered := true;
-end;
-
-
-
-procedure TfrmPlotConvertedData.chkActivateQFLMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var
-  fldn: Integer;
-begin
-
-  fldn := RadioGroup1.ItemIndex;
-  // showmessage('variable index='+inttostr(fldn));
-
-  // Filter records with QFL=9
-  if chkActivateQFL.Checked = true then
-  begin
-    case fldn of
-      0, 1: frmDM.cdsCD.Filter := 'C_CFL=0';
-      2:    frmDM.cdsCD.Filter := 'C_TFL=0';
-      3:    frmDM.cdsCD.Filter := 'C_SFL=0';
-      4:    frmDM.cdsCD.Filter := 'C_PFL=0';
-      5:    frmDM.cdsCD.Filter := 'C_UFL=0';
-      6:    frmDM.cdsCD.Filter := 'C_OFL=0';
-    end; { case }
-    frmDM.cdsCD.Filtered := true;
-  end
-  else
-    frmDM.cdsCD.Filtered := false;
-  //  Series1.CheckDataSource;
+   StatusBar1.Panels[1].Text:='mean='+floattostrF(mean,ffFixed,10,3)  +' ml/l';
 end;
 
 

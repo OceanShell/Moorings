@@ -1,69 +1,33 @@
 object frmPlotConvertedData: TfrmPlotConvertedData
-  Left = 229
+  Left = 282
   Height = 925
-  Top = 51
+  Top = 35
   Width = 1438
   Caption = 'Plot Converted Data'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 925
+  ClientWidth = 1438
   Color = clBtnFace
   DesignTimePPI = 144
   Font.Color = clWindowText
+  OnResize = FormResize
   OnShow = FormShow
   LCLVersion = '2.0.6.0'
-  object RadioGroup1: TRadioGroup
-    Left = 1248
-    Height = 464
-    Top = 72
-    Width = 164
-    Anchors = [akTop, akRight]
-    AutoFill = True
-    Caption = 'Plot'
-    ChildSizing.LeftRightSpacing = 6
-    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-    ChildSizing.EnlargeVertical = crsHomogenousChildResize
-    ChildSizing.ShrinkHorizontal = crsScaleChilds
-    ChildSizing.ShrinkVertical = crsScaleChilds
-    ChildSizing.Layout = cclLeftToRightThenTopToBottom
-    ChildSizing.ControlsPerLine = 1
-    ClientHeight = 434
-    ClientWidth = 160
-    ItemIndex = 0
-    Items.Strings = (
-      'C_ANGLE'
-      'C_SPEED'
-      'C_TEMP'
-      'C_SALT'
-      'C_PRESS'
-      'C_TURB'
-      'C_OXYG'
-      'C_CFL'
-      'C_TFL'
-      'C_SFL'
-      'C_PFL'
-      'C_UFL'
-      'C_OFL'
-    )
-    OnClick = RadioGroup1Click
-    TabOrder = 0
-  end
   object Panel1: TPanel
     Left = 0
-    Height = 553
+    Height = 552
     Top = 0
-    Width = 1220
-    Align = alLeft
-    Anchors = [akTop, akLeft, akRight, akBottom]
+    Width = 1438
+    Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
-    ClientHeight = 553
-    ClientWidth = 1220
-    TabOrder = 1
+    ClientHeight = 552
+    ClientWidth = 1438
+    TabOrder = 0
     object Chart1: TChart
       Left = 0
-      Height = 429
-      Top = 75
-      Width = 1220
+      Height = 552
+      Top = 0
+      Width = 1238
       AxisList = <      
         item
           Marks.LabelBrush.Style = bsClear
@@ -73,7 +37,10 @@ object frmPlotConvertedData: TfrmPlotConvertedData
         end      
         item
           Alignment = calBottom
+          Marks.Format = '%2:s'
           Marks.LabelBrush.Style = bsClear
+          Marks.Source = DTI
+          Marks.Style = smsLabel
           Minors = <>
           Title.LabelBrush.Style = bsClear
         end>
@@ -82,49 +49,54 @@ object frmPlotConvertedData: TfrmPlotConvertedData
       Foot.Font.Color = clBlue
       Title.Brush.Color = clBtnFace
       Title.Font.Color = clBlue
+      Title.Font.Style = [fsBold]
       Title.Text.Strings = (
         'TAChart'
       )
+      Title.Visible = True
+      Toolset = ChartToolset1
       Align = alClient
+      ParentShowHint = False
       OnMouseMove = Chart1MouseMove
       object Series1: TLineSeries
         LinePen.Color = clBlue
+        Pointer.Brush.Color = clBlue
+        Pointer.HorizSize = 1
+        Pointer.Style = psCircle
+        Pointer.VertSize = 1
+        Pointer.Visible = True
+        ShowPoints = True
       end
     end
     object Panel2: TPanel
-      Left = 0
-      Height = 49
-      Top = 504
-      Width = 1220
-      Align = alBottom
+      Left = 1238
+      Height = 552
+      Top = 0
+      Width = 200
+      Align = alRight
       BevelOuter = bvNone
-      ClientHeight = 49
-      ClientWidth = 1220
+      ClientHeight = 552
+      ClientWidth = 200
+      Constraints.MinHeight = 550
       TabOrder = 1
-      object Label2: TLabel
-        Left = 24
-        Height = 25
-        Top = 12
-        Width = 447
-        Caption = 'right-click over a column to set QFL=9 on whole variable'
-        ParentColor = False
-      end
       object chkActivateQFL: TCheckBox
-        Left = 536
+        Left = 16
         Height = 29
-        Top = 8
-        Width = 158
-        Caption = 'Filter out QFL=9'
+        Top = 480
+        Width = 132
+        Caption = 'Show QFL=9'
+        Checked = True
         OnChange = chkActivateQFLChange
-        OnMouseUp = chkActivateQFLMouseUp
+        State = cbChecked
         TabOrder = 0
       end
       object btnCDSCommit: TBitBtn
-        Left = 1096
+        Left = 16
         Height = 32
-        Top = 5
-        Width = 123
+        Top = 520
+        Width = 163
         Caption = 'Save'
+        Enabled = False
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000000000000000000000000000000000000FF00FF00FF00
@@ -164,62 +136,61 @@ object frmPlotConvertedData: TfrmPlotConvertedData
         OnClick = btnCDSCommitClick
         TabOrder = 1
       end
-    end
-    object Panel3: TPanel
-      Left = 0
-      Height = 75
-      Top = 0
-      Width = 1220
-      Align = alTop
-      BevelOuter = bvNone
-      ClientHeight = 75
-      ClientWidth = 1220
-      TabOrder = 2
-      object Label5: TLabel
-        Left = 40
-        Height = 25
-        Top = 32
-        Width = 51
-        Caption = 'Label5'
-        ParentColor = False
-      end
-      object Label4: TLabel
-        Left = 512
-        Height = 25
-        Top = 32
-        Width = 51
-        Caption = 'Label4'
-        ParentColor = False
-      end
-      object Label1: TLabel
-        Left = 912
-        Height = 25
-        Top = 32
-        Width = 51
-        Caption = 'Label1'
-        ParentColor = False
+      object RadioGroup1: TRadioGroup
+        Left = 16
+        Height = 464
+        Top = 8
+        Width = 164
+        AutoFill = True
+        Caption = 'Plot'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        ClientHeight = 434
+        ClientWidth = 160
+        ItemIndex = 0
+        Items.Strings = (
+          'C_ANGLE'
+          'C_SPEED'
+          'C_TEMP'
+          'C_SALT'
+          'C_PRESS'
+          'C_TURB'
+          'C_OXYG'
+          'C_CFL'
+          'C_TFL'
+          'C_SFL'
+          'C_PFL'
+          'C_UFL'
+          'C_OFL'
+        )
+        OnClick = RadioGroup1Click
+        TabOrder = 2
       end
     end
   end
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 372
-    Top = 553
+    Height = 329
+    Top = 560
     Width = 1438
     Align = alBottom
     AlternateColor = 13631478
     AutoAdvance = aaNone
-    AutoFillColumns = True
     Color = 13627366
     Columns = <    
       item
         Title.Caption = 'ID'
-        Width = 95
+        Width = 80
         FieldName = 'ABSNUM'
       end    
       item
         Title.Caption = 'Time'
-        Width = 95
+        Width = 180
         FieldName = 'C_TIME'
         DisplayFormat = 'DD.MM.YYYY hh:nn:ss'
       end    
@@ -297,13 +268,66 @@ object frmPlotConvertedData: TfrmPlotConvertedData
     Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgRowHighlight]
     ParentFont = False
     Scrollbars = ssAutoBoth
-    TabOrder = 2
+    TabOrder = 1
     TitleFont.Color = clWindowText
     TitleFont.Height = -17
     TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = [fsBold]
+    OnPrepareCanvas = DBGrid1PrepareCanvas
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 36
+    Top = 889
+    Width = 1438
+    Panels = <    
+      item
+        Width = 450
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 8
+    Top = 552
+    Width = 1438
+    Align = alBottom
+    Beveled = True
+    ResizeAnchor = akBottom
+  end
+  object DTI: TDateTimeIntervalChartSource
+    Params.Count = 10
+    Params.MaxLength = 150
+    Params.MinLength = 20
+    Params.Options = [aipUseCount, aipUseMaxLength, aipUseMinLength, aipUseNiceSteps]
+    DateTimeStepFormat.MonthFormat = 'mm.yyyy'
+    DateTimeStepFormat.WeekFormat = 'dd.mm'
+    DateTimeStepFormat.DayFormat = 'dd.mm'
+    left = 680
+    top = 240
   end
   object ChartToolset1: TChartToolset
-    left = 700
-    top = 222
+    left = 816
+    top = 240
+    object DPCT: TDataPointClickTool
+      Shift = [ssLeft]
+      GrabRadius = 8
+      ActiveCursor = crHandPoint
+      OnPointClick = DPCTPointClick
+    end
+    object DPHT: TDataPointHintTool
+      ActiveCursor = crHandPoint
+    end
+    object ZDT: TZoomDragTool
+      Shift = [ssLeft]
+      Brush.Style = bsClear
+      RestoreExtentOn = [zreDragTopLeft, zreDragTopRight, zreDragBottomLeft]
+    end
+    object ZMWT: TZoomMouseWheelTool
+    end
   end
 end
