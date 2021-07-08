@@ -119,9 +119,27 @@ object frmdm: Tfrmdm
     top = 226
   end
   object CDQuery: TSQLQuery
+    MaxIndexesCount = 100
     FieldDefs = <>
     Database = DB
     Transaction = TR
+    UpdateSQL.Strings = (
+      'UPDATE CURRENTS SET'
+      'C_ANGLE=:C_ANGLE,'
+      'C_SPEED=:C_SPEED,'
+      'C_TEMP=:C_TEMP,'
+      'C_SALT=:C_SALT,'
+      'C_PRESS=:C_PRESS,'
+      'C_TURB=:C_TURB,'
+      'C_OXYG=:C_OXYG,'
+      'C_CFL=:C_CFL,'
+      'C_TFL=:C_TFL,'
+      'C_SFL=:C_SFL,'
+      'C_PFL=:C_PFL,'
+      'C_UFL=:C_UFL,'
+      'C_OFL=:C_OFL'
+      'WHERE ABSNUM=:OLD_ABSNUM AND C_TIME=:OLD_C_TIME'
+    )
     Params = <>
     left = 56
     top = 416

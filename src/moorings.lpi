@@ -175,7 +175,9 @@
       <Unit21>
         <Filename Value="SetFlag.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSetFlag"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit21>
       <Unit22>
         <Filename Value="msettings.pas"/>

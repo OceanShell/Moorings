@@ -22,6 +22,7 @@ object frmPlotConvertedData: TfrmPlotConvertedData
     Caption = 'Panel1'
     ClientHeight = 552
     ClientWidth = 1438
+    Constraints.MinHeight = 550
     TabOrder = 0
     object Chart1: TChart
       Left = 0
@@ -58,6 +59,17 @@ object frmPlotConvertedData: TfrmPlotConvertedData
       Align = alClient
       ParentShowHint = False
       OnMouseMove = Chart1MouseMove
+      object Series2: TLineSeries
+        Legend.Visible = False
+        LineType = ltNone
+        Pointer.Brush.Color = clRed
+        Pointer.HorizSize = 2
+        Pointer.Pen.Color = clRed
+        Pointer.Style = psCircle
+        Pointer.VertSize = 2
+        Pointer.Visible = True
+        ShowPoints = True
+      end
       object Series1: TLineSeries
         LinePen.Color = clBlue
         Pointer.Brush.Color = clBlue
@@ -93,10 +105,9 @@ object frmPlotConvertedData: TfrmPlotConvertedData
       object btnCDSCommit: TBitBtn
         Left = 16
         Height = 32
-        Top = 520
+        Top = 512
         Width = 163
         Caption = 'Save'
-        Enabled = False
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000000000000000000000000000000000000FF00FF00FF00
@@ -184,11 +195,13 @@ object frmPlotConvertedData: TfrmPlotConvertedData
     Color = 13627366
     Columns = <    
       item
+        ReadOnly = True
         Title.Caption = 'ID'
         Width = 80
         FieldName = 'ABSNUM'
       end    
       item
+        ReadOnly = True
         Title.Caption = 'Time'
         Width = 180
         FieldName = 'C_TIME'
@@ -267,12 +280,15 @@ object frmPlotConvertedData: TfrmPlotConvertedData
     Font.Name = 'MS Sans Serif'
     Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgRowHighlight]
     ParentFont = False
+    PopupMenu = PM
     Scrollbars = ssAutoBoth
     TabOrder = 1
     TitleFont.Color = clWindowText
     TitleFont.Height = -17
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = [fsBold]
+    OnCellClick = DBGrid1CellClick
+    OnKeyUp = DBGrid1KeyUp
     OnPrepareCanvas = DBGrid1PrepareCanvas
   end
   object StatusBar1: TStatusBar
@@ -328,6 +344,14 @@ object frmPlotConvertedData: TfrmPlotConvertedData
       RestoreExtentOn = [zreDragTopLeft, zreDragTopRight, zreDragBottomLeft]
     end
     object ZMWT: TZoomMouseWheelTool
+    end
+  end
+  object PM: TPopupMenu
+    left = 528
+    top = 696
+    object SetFlagEntireColumn: TMenuItem
+      Caption = 'Set Flag on Entire Column'
+      OnClick = SetFlagEntireColumnClick
     end
   end
 end

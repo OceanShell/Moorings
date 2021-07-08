@@ -1,25 +1,26 @@
 object frmSetFlag: TfrmSetFlag
-  Left = 899
-  Top = 727
+  Left = 834
+  Height = 285
+  Top = 303
+  Width = 264
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'frmSetFlag'
-  ClientHeight = 190
-  ClientWidth = 140
+  Caption = 'Set Flag'
+  ClientHeight = 285
+  ClientWidth = 264
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
+  DesignTimePPI = 144
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -20
   Font.Name = 'Tahoma'
-  Font.Style = []
-  Position = poScreenCenter
   OnShow = FormShow
-  PixelsPerInch = 120
+  Position = poScreenCenter
+  LCLVersion = '2.0.6.0'
   object ListBox1: TListBox
     Left = 0
+    Height = 285
     Top = 0
-    Width = 140
-    Height = 165
+    Width = 264
     Align = alClient
     Items.Strings = (
       '[0]  not set'
@@ -31,24 +32,10 @@ object frmSetFlag: TfrmSetFlag
       '[6]'
       '[7]'
       '[8]'
-      '[9] erroneous')
+      '[9] erroneous'
+    )
+    ItemHeight = 24
+    OnDblClick = ListBox1DblClick
     TabOrder = 0
-    OnClick = ListBox1Click
-  end
-  object btnSetQFL: TBitBtn
-    Left = 0
-    Top = 165
-    Width = 140
-    Height = 25
-    Align = alBottom
-    Caption = 'Set Quality FLag'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clRed
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 1
-    OnClick = btnSetQFLClick
   end
 end

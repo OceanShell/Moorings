@@ -8,7 +8,7 @@ uses
   LCLIntf, LCLType, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, DBCtrls, ExtCtrls, DBGrids, ComCtrls, TASeries,
   TAGraph, TATools, DateUtils, StrUtils, TACustomSeries, TAGeometry,
-  TAChartUtils, TAIntervalSources, Grids, Types;
+  TAChartUtils, TAIntervalSources, Grids, Menus, Types;
 
 type
 
@@ -17,6 +17,9 @@ type
   TfrmPlotConvertedData = class(TForm)
     btnCDSCommit: TBitBtn;
     Chart1: TChart;
+    SetFlagEntireColumn: TMenuItem;
+    PM: TPopupMenu;
+    Series2: TLineSeries;
     ChartToolset1: TChartToolset;
     ZMWT: TZoomMouseWheelTool;
     ZDT: TZoomDragTool;
@@ -36,6 +39,8 @@ type
     procedure Chart1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
       );
     procedure chkActivateQFLChange(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
+    procedure DBGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1PrepareCanvas(sender: TObject; DataCol: Integer;
       Column: TColumn; AState: TGridDrawState);
     procedure DPCTPointClick(ATool: TChartTool; APoint: TPoint);
@@ -43,16 +48,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCDSCommitClick(Sender: TObject);
     procedure RadioGroup1Click(Sender: TObject);
-    procedure DBGridEh1KeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-  //  procedure DBGridEh1CellClick(Column: TColumnEh);
     procedure DBChart1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure DBGridEh1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure SetFlagEntireColumnClick(Sender: TObject);
   private
     { Private declarations }
     procedure GetStatistics(fld:integer);
+    procedure GridNavigation;
   public
     { Public declarations }
     procedure ChangeID;
@@ -283,8 +285,6 @@ begin
     sql.Add(' ORDER BY C_TIME ');
     ParamByName('ID').Value := SA;
     Open;
-    Last;
-    First;
   end;
 
   GetStatistics(RadioGroup1.ItemIndex);
@@ -300,7 +300,7 @@ begin
   // showmessage('variable index='+inttostr(fldn));
 
   // Filter records with QFL=9
-  if chkActivateQFL.Checked = true then begin
+  if chkActivateQFL.Checked = false then begin
     case fldn of
       0, 1: frmdm.CDQuery.Filter := 'C_CFL=0';
       2:    frmdm.CDQuery.Filter := 'C_TFL=0';
@@ -310,6 +310,7 @@ begin
       6:    frmdm.CDQuery.Filter := 'C_OFL=0';
     end; { case }
     frmdm.CDQuery.Filtered := true;
+   // showmessage(frmdm.CDQuery.Filter);
   end else
     frmdm.CDQuery.Filtered := false;
 
@@ -318,10 +319,30 @@ begin
  GetStatistics(fldn);
 end;
 
+procedure TfrmPlotConvertedData.GridNavigation;
+begin
+Series2.Clear;
+if (frmDM.CDQuery.FieldValues['C_Time'] <> null) and
+  (frmDM.CDQuery.Fields.Fields[RadioGroup1.ItemIndex + 2].Value <> null) then
+  Series2.AddXY(frmDM.CDQuery.FieldByName('C_Time').AsDateTime,
+    frmDM.CDQuery.Fields.Fields[RadioGroup1.ItemIndex + 2].Value);
+end;
+
+procedure TfrmPlotConvertedData.DBGrid1CellClick(Column: TColumn);
+begin
+  GridNavigation;
+end;
+
+procedure TfrmPlotConvertedData.DBGrid1KeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (key=VK_UP) or (key=VK_DOWN) then GridNavigation;
+end;
+
 procedure TfrmPlotConvertedData.DBGrid1PrepareCanvas(sender: TObject;
   DataCol: Integer; Column: TColumn; AState: TGridDrawState);
 begin
- if (column.FieldName='ABSNUM') then begin
+ if (column.FieldName='ABSNUM') or (column.FieldName='C_TIME') then begin
     TDBGrid(sender).Canvas.Brush.Color := clBtnFace;
  end;
 
@@ -337,15 +358,18 @@ procedure TfrmPlotConvertedData.DPCTPointClick(ATool: TChartTool; APoint: TPoint
 Var
  tool: TDataPointClicktool;
  series: TLineSeries;
-// pointer: TSeriesPointer;
-
 begin
   tool := ATool as TDataPointClickTool;
   if tool.Series is TLineSeries then begin
     series := TLineSeries(tool.Series);
 
-    if (tool.PointIndex<>-1) then
+    if (tool.PointIndex<>-1) then begin
         frmdm.CDQuery.Locate('C_TIME', series.XValue[tool.PointIndex], []);
+
+        Series2.Clear;
+        Series2.AddXY(frmDM.CDQuery.FieldValues['C_Time'],
+          frmDM.CDQuery.Fields.Fields[RadioGroup1.ItemIndex + 2].Value);
+    end;
   end;
 end;
 
@@ -384,12 +408,19 @@ end;
 
 procedure TfrmPlotConvertedData.btnCDSCommitClick(Sender: TObject);
 begin
-  frmDM.cdsCD.ApplyUpdates(0);
+  frmDM.CDQuery.ApplyUpdates(0);
+  frmdm.TR.CommitRetaining;
 end;
 
 procedure TfrmPlotConvertedData.RadioGroup1Click(Sender: TObject);
 begin
   ChangeID;
+end;
+
+procedure TfrmPlotConvertedData.DBChart1MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+
 end;
 
 procedure TfrmPlotConvertedData.GetStatistics(fld:integer);
@@ -416,6 +447,7 @@ begin
      mean:=0;
 
    Series1.Clear;
+   Series2.Clear;
    frmdm.CDQuery.DisableControls;
    frmDM.CDQuery.First;
    while not frmDM.CDQuery.Eof do begin
@@ -437,10 +469,6 @@ begin
    frmdm.CDQuery.EnableControls;
 
      if mik<>0 then mean:=mean/mik;
-     //showmessage(QFLName+'  mik='+inttostr(mik)+'  mean='+floattostr(mean));
-
-    // Label1.Caption := 'Number of ' + copy(QFLName,3,3) + '=9 is ' + inttostr(QFL9);
-   //  chkActivateQFL.Checked := true;
 
      StatusBar1.Panels[1].Text:='mean='+floattostrF(mean,ffFixed,10,3);
 
@@ -471,98 +499,40 @@ begin
 end;
 
 
-
-
-procedure TfrmPlotConvertedData.DBGridEh1KeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  {Series2.Clear;
-  if (frmDM.cdsCD.FieldValues['C_Time'] <> null) and
-    (frmDM.cdsCD.Fields.Fields[RadioGroup1.ItemIndex + 2].Value <> null) then
-    Series2.AddXY(frmDM.cdsCD.FieldValues['C_Time'],
-      frmDM.cdsCD.Fields.Fields[RadioGroup1.ItemIndex + 2].Value);
-      }
-end;
-
-
-{
-procedure TfrmPlotConvertedData.DBGridEh1CellClick(Column: TColumnEh);
-begin
-  Series2.Clear;
-  if (frmDM.cdsCD.FieldValues['C_Time'] <> null) and
-    (frmDM.cdsCD.Fields.Fields[RadioGroup1.ItemIndex + 2].Value <> null) then
-    Series2.AddXY(frmDM.cdsCD.FieldValues['C_Time'],
-      frmDM.cdsCD.Fields.Fields[RadioGroup1.ItemIndex + 2].Value);
-end;
-
-}
-
-// draw point on mouse click in DBCHART
-procedure TfrmPlotConvertedData.DBChart1MouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var
-  Num_Clicked: int64;
-  LVar: array [0 .. 1] of Variant;
-begin
-  {Series2.Clear;
-  { w } with Series1 do
-  begin
-    Num_Clicked := Clicked(X, Y);
-    { c } if Num_Clicked <> -1 then
-    begin
-      LVar[0] := YValues[Num_Clicked];
-      LVar[1] := XValues[Num_Clicked];
-      DBGridEh1.DataSource.DataSet.Locate('C_Time', LVar[1], []);
-      DBChart1.Series[1].AddXY(XValues[Num_Clicked], YValues[Num_Clicked]);
-      { c } end;
-    { w } end;   }
-end;
-
-procedure TfrmPlotConvertedData.DBGridEh1MouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmPlotConvertedData.SetFlagEntireColumnClick(Sender: TObject);
 var
 uf: string; //update field
 begin
 
-{r}if Button=mbRight then begin
-   //  uf:=DBGridEh1.SelectedField.FieldName;
+ uf:=DBGrid1.SelectedField.FieldName;
 
-{c}if MessageDlg('Set QFL on variable ' + uf +'?',
-     mtConfirmation,
-     [mbyes, mbno], 0, mbYes)= mrYes then begin
+ if MessageDlg('Set QFL on ' + uf +'?', mtConfirmation, [mbyes, mbno], 0)= mrNo then exit;
 
      //1. select flag from frmSEtFlag
-     frmSetFlag:= TfrmSetFlag.Create(Self);
+  frmSetFlag:= TfrmSetFlag.Create(Self);
    try
      if frmSetFlag.ShowModal = mrOk then
    finally
      frmSetFlag.Free;
      frmSetFlag := nil;
    end;
-     showmessage('QFL='+inttostr(QFL));
 
-     //2. update DB and reopen cds
-   with frmdm.ib1q1 do begin
-     Close;
-     SQL.Clear;
-     SQL.Add(' UPDATE CURRENTS SET ' + uf + '=:QFL  ');
-     SQL.Add(' WHERE ');
-     SQL.Add(' ABSNUM=:ID ');
-     ParamByName('ID').AsFloat:=SA;
-     ParamByName('QFL').AsInteger:=QFL;
-     ExecSQL;
+   if QFL<0 then exit;
+
+   showmessage('QFL='+inttostr(QFL));
+
+   frmdm.CDQuery.DisableControls;
+   frmDM.CDQuery.First;
+   while not frmDM.CDQuery.Eof do begin
+     frmDM.CDQuery.Edit;
+     frmDM.CDQuery.FieldByName(uf).Value:=QFL;
+     frmDM.CDQuery.Post;
+     frmDM.CDQuery.Next;
    end;
-     showmessage(frmdm.ib1q1.sql.Text);
+   frmDM.CDQuery.First;
+   frmdm.CDQuery.EnableControls;
 
-     frmdm.TR.Commit;
-     frmDM.cdsCD.Active:=false;
-     frmDM.cdsCD.Open;
-
-{c}end
-   else
-     exit;
-
-{r}end;
+   frmDM.CDQuery.ApplyUpdates(0);
 
 end;
 

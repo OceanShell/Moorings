@@ -558,7 +558,6 @@ begin
 end;
 
 
-
 procedure Tfrmmain.PlotTimeSeriesLSTGrapher1Click(Sender: TObject);
 begin
    frmPlotTimeSeriesLSTGrapher := TfrmPlotTimeSeriesLSTGrapher.Create(Self);

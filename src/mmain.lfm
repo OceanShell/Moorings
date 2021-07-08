@@ -4,8 +4,8 @@ object frmmain: Tfrmmain
   Top = 125
   Width = 1350
   Caption = 'Moorings'
-  ClientHeight = 670
-  ClientWidth = 1350
+  ClientHeight = 0
+  ClientWidth = 0
   Constraints.MinHeight = 700
   Constraints.MinWidth = 1350
   DesignTimePPI = 144
