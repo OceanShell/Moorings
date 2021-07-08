@@ -1264,6 +1264,7 @@ if SinglePlot=true then Writeln(script, ' GrapherApp.Visible = True')
 Writeln(script, '');
 
 Writeln(script, ' Set CompositePlot = GrapherApp.Documents.Add(grfPlotDoc) ');
+Writeln(script, ' CompositePlot.PageSetup.Orientation=grfPortrait ');
 Writeln(script, '');
 
 //title line 01:RCM Composite PLot
