@@ -581,9 +581,7 @@ begin
     frmRecomputeRowSpeed.Free;
     frmRecomputeRowSpeed:= nil;
   end;
-
 end;
-
 
 
 procedure Tfrmmain.CDSNavigation;
@@ -595,7 +593,6 @@ if (ABSNUM=0) or (NavigationOrder=false) then exit;
  If NavigationOrder=true then begin
   NavigationOrder:=false; //Блокируем перемещение, пока все не завершим
    if frmmap_open=true then frmmap.ChangeID(absnum);
-
   NavigationOrder:=true; //Завершили, открываем доступ к навигации
  end;
 end;
@@ -786,7 +783,6 @@ begin
     frmCreateTextReport.Free;
     frmCreateTextReport:= nil;
   end;
-
 end;
 
 procedure Tfrmmain.GFIUpload1Click(Sender: TObject);
